@@ -1,7 +1,7 @@
 import { auth } from '../config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
-export default async function signIn(email: string, password: string) {
+export async function signIn(email: string, password: string) {
   let result = null
   let error = null
 

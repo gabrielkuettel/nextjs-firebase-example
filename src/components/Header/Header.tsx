@@ -8,6 +8,7 @@ import clsx from 'clsx'
 const userNavigation = [
   { name: 'Dasbhoard', href: '/dashboard' },
   { name: 'Sign In', href: '/signin' },
+  { name: 'Sign Out', href: '/signout' },
   { name: 'Register', href: '/signup' },
 ]
 

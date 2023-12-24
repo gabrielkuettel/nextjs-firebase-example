@@ -1,9 +1,9 @@
 'use client'
-import signUp from '@/firebase/auth/signup'
+import { register } from '@/firebase/auth/register'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-function Page(): JSX.Element {
+export default function SignUpPage(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
@@ -11,7 +11,7 @@ function Page(): JSX.Element {
   const handleForm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
 
-    const { result, error } = await signUp(email, password)
+    const { result, error } = await register(email, password)
 
     if (error) {
       console.log(error)
@@ -67,5 +67,3 @@ function Page(): JSX.Element {
     </div>
   )
 }
-
-export default Page
