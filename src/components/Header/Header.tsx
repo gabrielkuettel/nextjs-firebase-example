@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon } from '@heroicons/react/24/outline'
@@ -83,7 +84,7 @@ export function Header({ handleOpenSidebar }: { handleOpenSidebar: (value: boole
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
-                      <a
+                      <Link
                         href={item.href}
                         className={clsx(
                           active ? 'bg-gray-50' : '',
@@ -91,7 +92,7 @@ export function Header({ handleOpenSidebar }: { handleOpenSidebar: (value: boole
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 ))}

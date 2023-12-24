@@ -1,14 +1,28 @@
 'use client'
+import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
-import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
 
 export function Restricted({ children }: { children: ReactNode }): ReactNode {
-  const { isRestricted } = useAuth()
-  const router = useRouter()
+  const { isLoading, isRestricted } = useAuth()
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   if (isRestricted) {
-    router.push('/')
+    return (
+      <div>
+        <h1>Access Forbidden</h1>
+        <Link className="underline" href="/signin">
+          Sign In
+        </Link>{' '}
+        or{' '}
+        <Link className="underline" href="/signup">
+          Sign Up
+        </Link>
+      </div>
+    )
   }
 
   return <div>{children}</div>
