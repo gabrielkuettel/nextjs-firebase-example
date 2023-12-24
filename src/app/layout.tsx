@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { AuthContextProvider } from '@/context/AuthContext'
 import '@/styles/globals.css'
 
 import { Layout } from '@/components/Layout'
@@ -16,9 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html className="h-full bg-white" lang="en">
       <body className={`h-full ${inter.className}`}>
-        <AuthContextProvider>
-          <Layout>{children}</Layout>
-        </AuthContextProvider>
+        <Layout>{children}</Layout>
       </body>
     </html>
   )

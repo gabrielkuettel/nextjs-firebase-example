@@ -20,7 +20,7 @@ function Page(): JSX.Element {
 
     console.log(result)
 
-    router.push('/admin')
+    router.push('/dashboard')
   }
 
   return (
