@@ -5,8 +5,9 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 
 const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Admin', href: '/admin' },
+  { name: 'Sign In', href: '/signin' },
+  { name: 'Register', href: '/signup' },
 ]
 
 export function Header({ handleOpenSidebar }: { handleOpenSidebar: (value: boolean) => void }) {
