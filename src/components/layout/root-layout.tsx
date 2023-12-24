@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
 
-import { Sidebar } from '@/components/ui/Sidebar'
-import { Header } from '@/components/ui/Header'
+import { Sidebar } from '@/components/sidebar'
+import { Header } from '@/components/header'
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
