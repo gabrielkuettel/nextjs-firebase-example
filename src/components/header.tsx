@@ -6,6 +6,7 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 
 const userNavigation = [
+  { name: 'Account', href: '/account' },
   { name: 'Dasbhoard', href: '/dashboard' },
   { name: 'Sign In', href: '/signin' },
   { name: 'Sign Out', href: '/signout' },

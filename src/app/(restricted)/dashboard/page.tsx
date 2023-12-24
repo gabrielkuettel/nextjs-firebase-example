@@ -7,7 +7,7 @@ export default function DashboardPage(): JSX.Element {
 
   return (
     <div>
-      <h1>Only logged-in users can view this page</h1>
+      <h1>Only logged-in users can view the dashboard</h1>
       <p>
         Go to{' '}
         <Link className="underline" href="/dashboard/route-one">

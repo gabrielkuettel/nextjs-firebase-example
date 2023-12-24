@@ -4,11 +4,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { ReactNode } from 'react'
 
 export function RestrictedLayout({ children }: { children: ReactNode }): ReactNode {
-  const { isLoading: _, isRestricted } = useAuth()
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
+  const { isRestricted } = useAuth()
 
   if (isRestricted) {
     return (
