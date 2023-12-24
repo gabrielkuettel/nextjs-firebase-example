@@ -1,6 +1,7 @@
 'use client'
 import { signOut } from '@/firebase/auth/signOut'
 import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 export default function SignOutPage(): JSX.Element {
   const router = useRouter()
@@ -21,13 +22,11 @@ export default function SignOutPage(): JSX.Element {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen text-black">
-      <div className="w-96 bg-white rounded shadow p-6">
-        <h1 className="text-3xl font-bold mb-6">Sign Out</h1>
-        <button className="border-2 border-gray-700 p-2" onClick={handleSignOut}>
-          Sign Out
-        </button>
-      </div>
-    </div>
+    <>
+      <h1 className="text-3xl font-bold mb-6">Sign Out</h1>
+      <Button variant={'outline'} className="border-2 border-gray-700 p-2" onClick={handleSignOut}>
+        Sign Out
+      </Button>
+    </>
   )
 }

@@ -1,69 +1,100 @@
 'use client'
+import { Loader2 } from 'lucide-react'
 import { register } from '@/firebase/auth/register'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
-export default function SignUpPage(): JSX.Element {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+const formSchema = z.object({
+  username: z
+    .string()
+    .min(5, {
+      message: 'Username must be at least 5 characters.',
+    })
+    .email('This is not a valid email.'),
+  password: z.string().min(6, {
+    message: 'Password must be at least 6 characters.',
+  }),
+})
+
+export default function SignUpPage() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: 'test@test.com',
+      password: 'testing123',
+    },
+  })
+
+  const { isSubmitting, isValidating, errors } = form.formState
+
   const router = useRouter()
 
-  const handleForm = async (event: { preventDefault: () => void }) => {
-    event.preventDefault()
-
-    const { result, error } = await register(email, password)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { result, error } = await register(values.username, values.password)
 
     if (error) {
       console.log(error)
+      form.setError('root', { message: 'Something went wrong. Please try again.' })
       return
     }
 
     console.log(result)
 
-    router.push('/admin')
+    router.push('/dashboard')
   }
 
   return (
-    <div className="flex justify-center items-center h-screen text-black">
-      <div className="w-96 bg-white rounded shadow p-6">
-        <h1 className="text-3xl font-bold mb-6">Registration</h1>
-        <form onSubmit={handleForm} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block mb-1 font-medium">
-              Email
-            </label>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block mb-1 font-medium">
-              Password
-            </label>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white font-semibold py-2 rounded"
-          >
-            Sign up
-          </button>
-        </form>
-      </div>
-    </div>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="username" type="email" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is the email address associated with your account.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="password" type="password" {...field} />
+              </FormControl>
+              <FormDescription>This is your password.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {errors.root && <FormMessage>{errors.root.message}</FormMessage>}
+        <Button disabled={isSubmitting} type="submit">
+          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin">Please wait...</Loader2>}
+          {isSubmitting ? 'Working...' : 'Register'}
+        </Button>
+      </form>
+    </Form>
   )
 }
