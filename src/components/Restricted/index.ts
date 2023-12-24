@@ -1,1 +1,0 @@
-export { Restricted } from './Restricted'

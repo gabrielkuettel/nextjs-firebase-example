@@ -1,5 +1,5 @@
-import { Restricted } from '@/components/Restricted'
+import { RestrictedLayout as Layout } from '@/components/layout/RestrictedLayout'
 
 export default function RestrictedLayout({ children }: { children: React.ReactNode }) {
-  return <Restricted>{children}</Restricted>
+  return <Layout>{children}</Layout>
 }

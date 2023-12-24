@@ -1,0 +1,1 @@
+export { RestrictedLayout } from './RestrictedLayout'

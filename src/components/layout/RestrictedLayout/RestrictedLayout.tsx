@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import { ReactNode } from 'react'
 
-export function Restricted({ children }: { children: ReactNode }): ReactNode {
+export function RestrictedLayout({ children }: { children: ReactNode }): ReactNode {
   const { isLoading, isRestricted } = useAuth()
 
   if (isLoading) {
