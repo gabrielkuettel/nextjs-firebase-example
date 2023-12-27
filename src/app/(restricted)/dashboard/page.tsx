@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth } from '@/lib/firebase'
 
 export default function DashboardPage(): JSX.Element {
   const { user } = useAuth()

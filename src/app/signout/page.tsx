@@ -1,5 +1,5 @@
 'use client'
-import { signOut } from '@/firebase/auth/signOut'
+import { signOut } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 

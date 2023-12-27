@@ -1,6 +1,6 @@
 'use client'
 import { Loader2 } from 'lucide-react'
-import { register } from '@/firebase/auth/register'
+import { register } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'

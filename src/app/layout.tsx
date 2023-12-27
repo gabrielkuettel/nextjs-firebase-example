@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
 
 import { RootLayout as Layout } from '@/components/layout/root-layout'
+import { AuthProvider } from '@/lib/firebase/context'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html className="h-full bg-white" lang="en">
       <body className={`h-full ${inter.className}`}>
-        <Layout>{children}</Layout>
+        <AuthProvider>
+          <Layout>{children}</Layout>
+        </AuthProvider>
       </body>
     </html>
   )
